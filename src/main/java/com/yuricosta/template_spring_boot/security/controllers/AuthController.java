@@ -12,12 +12,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("api/v1/auth")
-
+@RestController
+@RequestMapping("/api/v1/auth")
 public class AuthController {
 
     private final AuthService authService;
@@ -25,7 +26,8 @@ public class AuthController {
     private UserRepository userRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public AuthController(BCryptPasswordEncoder bCryptPasswordEncoder, AuthService authService, UserService userService) {
+    public AuthController(BCryptPasswordEncoder bCryptPasswordEncoder, AuthService authService,
+            UserService userService) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.authService = authService;
         this.userService = userService;
@@ -33,8 +35,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(
-            @RequestBody LoginRequest request
-    ) {
+            @RequestBody LoginRequest request) {
         var user = userService.findByEmail(request.email());
 
         if (user == null) {
@@ -45,16 +46,14 @@ public class AuthController {
 
         var response = new LoginResponse(
                 token.getTokenValue(),
-                token.getExpiresAt().getEpochSecond()
-        );
+                token.getExpiresAt().getEpochSecond());
 
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<RegisterResponse>> register(
-            @RequestBody RegisterRequest request
-    ) {
+            @RequestBody RegisterRequest request) {
         if (userService.emailExists(request.email())) {
             throw new BadCredentialsException("Usuário já registrado com este e-mail.");
         }
@@ -64,11 +63,9 @@ public class AuthController {
         var response = new RegisterResponse(
                 savedUser.getId().toString(),
                 savedUser.getName(),
-                savedUser.getEmail()
-        );
+                savedUser.getEmail());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                new ApiResponse<>(true, "Usuário registrado com sucesso.", response)
-        );
+                new ApiResponse<>(true, "Usuário registrado com sucesso.", response));
     }
 }
