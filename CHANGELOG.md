@@ -37,12 +37,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Documentation
 
 - README with quick start guide
-- Architecture documentation
-- API documentation
-- Setup guide
-- Development guide
-- Deployment guide
+- Quick start guide (5 minutes)
 - Template setup instructions
+- Deployment guide
+- Security policy
 
 ## [Unreleased]
 
@@ -55,13 +53,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Swagger/OpenAPI documentation
 - Integration tests
 - Performance benchmarks
-
----
-
-## Template Usage
-
-When using this template for your project:
-
-1. Update this CHANGELOG with your project's changes
-2. Remove template-specific entries
-3. Start tracking your own version history

@@ -108,10 +108,10 @@ curl -X POST http://localhost:8080/login \
 
 ## 📚 Documentation
 
-- **[Architecture Guide](docs/ARCHITECTURE.md)** - Project structure and conventions
-- **[API Documentation](docs/API.md)** - Available endpoints and usage
-- **[Setup Guide](docs/SETUP.md)** - Detailed setup and configuration
-- **[Development Guide](docs/DEVELOPMENT.md)** - How to extend the template
+- **[Quick Start](QUICK_START.md)** - Get running in 5 minutes
+- **[Template Setup](TEMPLATE_SETUP.md)** - Customize for your project
+- **[Deployment Guide](docs/DEPLOYMENT.md)** - Deploy to production
+- **[Security Policy](SECURITY.md)** - Security best practices
 
 ## 🔑 Default Endpoints
 
@@ -372,5 +372,3 @@ Created as a production-ready starter template for Spring Boot projects.
 ---
 
 **Ready to build your next Spring Boot application!** 🚀
-
-For detailed guides, see the `/docs` folder.

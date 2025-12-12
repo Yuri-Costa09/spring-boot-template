@@ -200,7 +200,8 @@ docker-compose up -d
 
 ## Need Help?
 
-- Check `/docs` folder for detailed documentation
-- Review Spring Boot docs: <https://spring.io/projects/spring-boot>
+- [Quick Start Guide](QUICK_START.md)
+- [Deployment Guide](docs/DEPLOYMENT.md)
+- [Spring Boot Documentation](https://spring.io/projects/spring-boot)
 
 **Happy coding!** 🚀
