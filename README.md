@@ -1,6 +1,8 @@
-# Spring Boot Authentication Template
+# 🚀 Spring Boot Template
 
-A production-ready Spring Boot 4.0 template with JWT authentication, role-based authorization, and best practices for building secure REST APIs.
+A production-ready Spring Boot 4.0 starter template with JWT authentication, role-based authorization, PostgreSQL, Flyway migrations, and best practices for building secure REST APIs.
+
+> **Use as Template**: Click "Use this template" button on GitHub to create your own repository based on this template.
 
 ## 🚀 Features
 
@@ -42,14 +44,25 @@ A production-ready Spring Boot 4.0 template with JWT authentication, role-based 
 
 ## ⚡ Quick Start
 
-### 1. Clone and Navigate
+### 1. Use This Template
+
+Click **"Use this template"** button on GitHub or clone:
 
 ```bash
 git clone <your-repo-url>
-cd real_state_ai_backend
+cd template-spring-boot
 ```
 
-### 2. Generate RSA Keys for JWT
+### 2. Configure Environment
+
+```bash
+# Copy environment template
+cp .env.example .env
+
+# Edit .env with your settings (optional - defaults work for local dev)
+```
+
+### 3. Generate RSA Keys for JWT
 
 ```bash
 # Generate private key
@@ -59,19 +72,39 @@ openssl genrsa -out src/main/resources/app.key 2048
 openssl rsa -in src/main/resources/app.key -pubout -out src/main/resources/app.pub
 ```
 
-### 3. Start Database
+**Important**: Keys are gitignored. Never commit `app.key` to version control.
+
+### 4. Start Database
 
 ```bash
 docker-compose up -d
 ```
 
-### 4. Run Application
+### 5. Run Application
 
 ```bash
+# Using Maven wrapper
 ./mvnw spring-boot:run
+
+# Or with environment variables
+APP_NAME=my-app ./mvnw spring-boot:run
 ```
 
 The application will start on `http://localhost:8080`
+
+### 6. Test Authentication
+
+```bash
+# Register a new user
+curl -X POST http://localhost:8080/register \
+  -H "Content-Type: application/json" \
+  -d '{"username":"test","email":"test@example.com","password":"password123"}'
+
+# Login
+curl -X POST http://localhost:8080/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"test","password":"password123"}'
+```
 
 ## 📚 Documentation
 
@@ -92,7 +125,7 @@ All other endpoints are protected by default (change in `SecurityConfig.PUBLIC_E
 ## 🏗️ Project Structure
 
 ```
-src/main/java/com/yuricosta/real_state_ai_backend/
+src/main/java/com/yuricosta/real_state_ai_backend/  # ⚠️ Change to your package
 ├── security/              # Authentication & authorization
 │   ├── controllers/       # Auth endpoints (login, register)
 │   ├── dtos/             # Request/response DTOs
@@ -112,6 +145,8 @@ src/main/java/com/yuricosta/real_state_ai_backend/
     ├── GlobalExceptionHandler.java # Centralized error handling
     └── errors/           # Custom exceptions
 ```
+
+**Note**: The package name `com.yuricosta.real_state_ai_backend` is a placeholder. Refactor to your own package when using this template.
 
 ## 🎯 Core Conventions
 
@@ -188,66 +223,122 @@ All entities extend `BaseEntity` for automatic:
 # Create executable JAR
 ./mvnw clean package
 
-# Run the JAR
-java -jar target/real_state_ai_backend-0.0.1-SNAPSHOT.jar
+# Run with production profile and environment variables
+java -jar target/template-spring-boot-1.0.0-SNAPSHOT.jar \
+  -Dspring.profiles.active=production \
+  -DDATABASE_URL=jdbc:postgresql://prod-host:5432/prod_db \
+  -DDATABASE_USERNAME=prod_user \
+  -DDATABASE_PASSWORD=secure_password
+```
+
+### Docker Deployment
+
+Create a `Dockerfile`:
+
+```dockerfile
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY target/*.jar app.jar
+COPY src/main/resources/app.pub /app/app.pub
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
+```
+
+Build and run:
+
+```bash
+docker build -t my-spring-app .
+docker run -p 8080:8080 \
+  -e DATABASE_URL=jdbc:postgresql://host.docker.internal:5432/template_db \
+  -e DATABASE_USERNAME=postgres \
+  -e DATABASE_PASSWORD=postgres \
+  my-spring-app
 ```
 
 ## 🔧 Configuration
 
-Key configuration in `application.properties`:
+All sensitive configuration uses environment variables with sensible defaults.
 
-```properties
-# Database
-spring.datasource.url=jdbc:postgresql://localhost:5434/real_state_db
-spring.datasource.username=postgres
-spring.datasource.password=postgres
+### Environment Variables
 
-# JWT Keys
-jwt.pub.key=classpath:app.pub
-jwt.private.key=classpath:app.key
+See `.env.example` for all available options:
 
-# Flyway
-spring.flyway.enabled=true
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `APP_NAME` | template-spring-boot | Application name |
+| `SERVER_PORT` | 8080 | Server port |
+| `DATABASE_URL` | jdbc:postgresql://localhost:5432/template_db | Database connection |
+| `DATABASE_USERNAME` | postgres | Database user |
+| `DATABASE_PASSWORD` | postgres | Database password |
+| `JWT_PUBLIC_KEY` | classpath:app.pub | Path to JWT public key |
+| `JWT_PRIVATE_KEY` | classpath:app.key | Path to JWT private key |
 
-# JPA
-spring.jpa.hibernate.ddl-auto=validate
-```
+### Local Development
 
-## 🚀 Using as Template
+For local development, the defaults in `application.properties` work out of the box with the provided `compose.yaml`.
+
+## 🚀 Customizing for Your Project
 
 ### 1. Update Package Names
 
-Replace `com.yuricosta.real_state_ai_backend` with your package:
+**Option A: IDE Refactoring (Recommended)**
+
+- Right-click package `com.yuricosta.real_state_ai_backend`
+- Select "Refactor" → "Rename"
+- Enter your package name (e.g., `com.yourcompany.yourproject`)
+
+**Option B: Command Line**
 
 ```bash
 # Linux/Mac
-find . -type f -name "*.java" -exec sed -i '' 's/com.yuricosta.real_state_ai_backend/com.yourcompany.yourproject/g' {} +
+find src -type f -name "*.java" -exec sed -i '' 's/com.yuricosta.real_state_ai_backend/com.yourcompany.yourproject/g' {} +
 
-# Or manually via IDE refactoring
+# Then move directories
+mkdir -p src/main/java/com/yourcompany/yourproject
+mv src/main/java/com/yuricosta/real_state_ai_backend/* src/main/java/com/yourcompany/yourproject/
 ```
 
 ### 2. Update Project Metadata
 
 Edit `pom.xml`:
 
-- `<groupId>` - Your organization
-- `<artifactId>` - Your project name
-- `<name>` and `<description>`
-
-### 3. Update Application Name
-
-In `application.properties`:
-
-```properties
-spring.application.name=your-application-name
+```xml
+<groupId>com.yourcompany</groupId>
+<artifactId>your-project-name</artifactId>
+<name>Your Project Name</name>
+<description>Your project description</description>
 ```
 
-### 4. Configure Database
+### 3. Configure Environment
 
-Update database settings in:
+Create `.env` from `.env.example` and customize:
 
-- `application.properties`
-- `compose.yaml`
+```bash
+cp .env.example .env
+# Edit .env with your values
+```
+
+### 4. Update Database Name
+
+In `.env`:
+
+```env
+DATABASE_NAME=your_db_name
+DATABASE_URL=jdbc:postgresql://localhost:5432/your_db_name
+```
+
+### 5. Generate Your JWT Keys
+
+```bash
+openssl genrsa -out src/main/resources/app.key 2048
+openssl rsa -in src/main/resources/app.key -pubout -out src/main/resources/app.pub
+```
+
+### 6. Update Documentation
+
+- Update this README with your project details
+- Modify docs in `/docs` folder as needed
+- Update the LICENSE file
 
 ## 📖 Learning Resources
 
@@ -255,24 +346,31 @@ Update database settings in:
 - [Spring Security OAuth2](https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html)
 - [Flyway Documentation](https://flywaydb.org/documentation/)
 
-## 🤝 Contributing
+## ⚠️ Security Checklist
 
-This is a template repository. When using for your projects:
+Before deploying to production:
 
-1. Fork or clone the repository
-2. Customize for your needs
-3. Remove this section and update README
+- [ ] Change all default passwords
+- [ ] Generate new JWT key pairs (never use template keys in production)
+- [ ] Configure CORS properly in `SecurityConfig`
+- [ ] Enable HTTPS/TLS
+- [ ] Set up proper environment variable management (AWS Secrets Manager, etc.)
+- [ ] Review and adjust JWT token expiration time
+- [ ] Enable Spring Security production settings
+- [ ] Set up proper logging and monitoring
+- [ ] Configure database connection pooling
+- [ ] Review and customize exception messages (avoid leaking internal details)
 
 ## 📝 License
 
-[Add your license here]
+MIT License - feel free to use this template for any purpose.
 
-## 👤 Author
+## 🙏 Credits
 
-Yuri Costa
+Created as a production-ready starter template for Spring Boot projects.
 
 ---
 
-**Ready to build your next Spring Boot application!** 🎉
+**Ready to build your next Spring Boot application!** 🚀
 
 For detailed guides, see the `/docs` folder.

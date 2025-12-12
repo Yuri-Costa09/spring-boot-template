@@ -8,11 +8,11 @@
 		<version>4.0.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.yuricosta</groupId>
-	<artifactId>real_state_ai_backend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>real_state_ai_backend</name>
-	<description>real_state_ai_backend</description>
+	<groupId>com.example</groupId>
+	<artifactId>template-spring-boot</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>Spring Boot Template</name>
+	<description>Production-ready Spring Boot template with JWT authentication and role-based authorization</description>
 	<url/>
 	<licenses>
 		<license/>
