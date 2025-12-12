@@ -1,4 +1,4 @@
-package com.yuricosta.real_state_ai_backend.shared;
+package com.yuricosta.template_spring_boot.shared;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

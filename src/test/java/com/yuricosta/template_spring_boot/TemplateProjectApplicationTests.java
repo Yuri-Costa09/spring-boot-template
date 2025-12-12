@@ -1,10 +1,10 @@
-package com.yuricosta.real_state_ai_backend;
+package com.yuricosta.template_spring_boot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RealStateAiBackendApplicationTests {
+class TemplateProjectApplicationTests {
 
 	@Test
 	void contextLoads() {

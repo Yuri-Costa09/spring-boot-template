@@ -1,7 +1,7 @@
-package com.yuricosta.real_state_ai_backend.security;
+package com.yuricosta.template_spring_boot.security;
 
-import com.yuricosta.real_state_ai_backend.user.User;
-import com.yuricosta.real_state_ai_backend.user.UserRepository;
+import com.yuricosta.template_spring_boot.user.User;
+import com.yuricosta.template_spring_boot.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

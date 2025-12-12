@@ -1,11 +1,10 @@
-package com.yuricosta.real_state_ai_backend.shared;
+package com.yuricosta.template_spring_boot.shared;
 
-import com.yuricosta.real_state_ai_backend.shared.errors.NotFoundException;
+import com.yuricosta.template_spring_boot.shared.errors.NotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;

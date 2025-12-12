@@ -1,4 +1,4 @@
-package com.yuricosta.real_state_ai_backend.security;
+package com.yuricosta.template_spring_boot.security;
 
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
@@ -21,8 +21,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
-
-import static org.springframework.security.oauth2.jwt.JwtTypeValidator.jwt;
 
 @Configuration
 @EnableWebSecurity

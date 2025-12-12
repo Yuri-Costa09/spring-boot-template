@@ -1,13 +1,13 @@
-package com.yuricosta.real_state_ai_backend.security.controllers;
+package com.yuricosta.template_spring_boot.security.controllers;
 
-import com.yuricosta.real_state_ai_backend.security.AuthService;
-import com.yuricosta.real_state_ai_backend.security.dtos.LoginRequest;
-import com.yuricosta.real_state_ai_backend.security.dtos.LoginResponse;
-import com.yuricosta.real_state_ai_backend.security.dtos.RegisterRequest;
-import com.yuricosta.real_state_ai_backend.security.dtos.RegisterResponse;
-import com.yuricosta.real_state_ai_backend.shared.ApiResponse;
-import com.yuricosta.real_state_ai_backend.user.UserRepository;
-import com.yuricosta.real_state_ai_backend.user.UserService;
+import com.yuricosta.template_spring_boot.security.AuthService;
+import com.yuricosta.template_spring_boot.security.dtos.LoginRequest;
+import com.yuricosta.template_spring_boot.security.dtos.LoginResponse;
+import com.yuricosta.template_spring_boot.security.dtos.RegisterRequest;
+import com.yuricosta.template_spring_boot.security.dtos.RegisterResponse;
+import com.yuricosta.template_spring_boot.shared.ApiResponse;
+import com.yuricosta.template_spring_boot.user.UserRepository;
+import com.yuricosta.template_spring_boot.user.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;

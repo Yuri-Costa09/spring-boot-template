@@ -1,6 +1,6 @@
-package com.yuricosta.real_state_ai_backend.security;
+package com.yuricosta.template_spring_boot.security;
 
-import com.yuricosta.real_state_ai_backend.user.User;
+import com.yuricosta.template_spring_boot.user.User;
 import jakarta.annotation.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

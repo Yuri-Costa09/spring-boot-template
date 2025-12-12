@@ -1,6 +1,6 @@
-package com.yuricosta.real_state_ai_backend.user;
+package com.yuricosta.template_spring_boot.user;
 
-import com.yuricosta.real_state_ai_backend.shared.errors.NotFoundException;
+import com.yuricosta.template_spring_boot.shared.errors.NotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

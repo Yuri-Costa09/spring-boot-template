@@ -1,4 +1,4 @@
-package com.yuricosta.real_state_ai_backend;
+package com.yuricosta.template_spring_boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @EnableJpaAuditing
 @SpringBootApplication
-public class RealStateAiBackendApplication {
+public class TemplateProjectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RealStateAiBackendApplication.class, args);
+		SpringApplication.run(TemplateProjectApplication.class, args);
 	}
 
 }

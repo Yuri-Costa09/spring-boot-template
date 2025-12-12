@@ -1,4 +1,4 @@
-package com.yuricosta.real_state_ai_backend.roles;
+package com.yuricosta.template_spring_boot.roles;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

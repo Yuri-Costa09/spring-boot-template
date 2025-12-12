@@ -1,9 +1,8 @@
-package com.yuricosta.real_state_ai_backend.user;
+package com.yuricosta.template_spring_boot.user;
 
-import com.yuricosta.real_state_ai_backend.roles.Role;
-import com.yuricosta.real_state_ai_backend.shared.BaseEntity;
+import com.yuricosta.template_spring_boot.roles.Role;
+import com.yuricosta.template_spring_boot.shared.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
